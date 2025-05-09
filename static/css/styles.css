@@ -127,21 +127,30 @@ nav a:hover {
     line-height: 1.5;
 }
 
-/* Кнопка добавления */
 .add-note {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 30px;
+    right: 30px;
     width: 60px;
     height: 60px;
-    border-radius: 50%;
-    background: #6d8b74;
+    background-color: #6d8b74;
     color: white;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.add-note-icon {
+    display: block;
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-top: -2px;
+    transform: translateY(-1px);
 }
 
 .add-note:hover {

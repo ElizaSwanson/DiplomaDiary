@@ -23,5 +23,7 @@
             </div>
         {% endfor %}
     </div>
-<button class="add-note">+</button>
+<a href="{% url 'diary:note_create' %}" class="add-note">
+    <span class="add-note-icon">+</span>
+</a>
 {% endblock %}
