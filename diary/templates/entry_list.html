@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="notes">
+        {% for note in notes %}
+            <div class="note">
+                <div class="note-date">{{ note.created_at }}</div>
+                {% if request.user == note.author %}
+                    <a class="delete-note" href="{% url 'diary:note_delete' note.pk %}">🔥</a>
+                    <a class="update-note" href="{% url 'diary:note_edit' note.pk %}">✏️</a>
+                {% endif %}
+                <h3>{{ note.title }}</h3>
+                <p>{{ note.content }}</p>
+            </div>
+        {% empty %}
+            <div class="empty-message-container">
+                <div class="empty-message">
+                    <div class="empty-text">ЗАПИСЕЙ НЕ НАЙДЕНО</div>
+                    <a href="{% url 'diary:note_create' %}" class="pulse-button">
+                    Что нового у вас произошло?
+                </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+<button class="add-note">+</button>
+{% endblock %}

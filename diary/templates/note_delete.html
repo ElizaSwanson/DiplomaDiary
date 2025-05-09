@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="delete-confirm-container">
+    <div class="delete-confirm">
+        <h2>Удалить запись</h2>
+        <p>Вы уверены, что хотите удалить запись "{{ object.title }}"?</p>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-actions">
+                <button type="submit" class="btn-delete">Да, удалить</button>
+                <a href="{% url 'diary:entry_list' %}" class="btn-cancel">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

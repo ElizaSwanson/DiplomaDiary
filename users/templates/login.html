@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-form">
+        <h2>Вход в дневник</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Почта</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn-primary">Войти</button>
+        </form>
+        <p class="auth-link">Ещё нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрируйтесь</a></p>
+    </div>
+</div>
+{% endblock %}

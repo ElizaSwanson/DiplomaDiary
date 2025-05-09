@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="notes">
+    {% if query %}
+        <div class="search-results">
+            <h3>Результаты поиска для "{{ query }}":</h3>
+        </div>
+            {% if notes %}
+                <div class="notes-list">
+                    {% for note in notes %}
+                    <div class="note">
+                        <div class="note-date">{{ note.created_at }}</div>
+                        {% if request.user == note.author %}
+                            <a class="delete-note" href="{% url 'diary:note_delete' note.pk %}">🔥</a>
+                            <a class="update-note" href="{% url 'diary:note_edit' note.pk %}">✏️</a>
+                        {% endif %}
+                        <h3>{{ note.title }}</h3>
+                        <p>{{ note.content }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="no-results">
+                    <h3>Ничего не найдено. Попробуйте изменить запрос.</h3>
+                </div>
+            {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

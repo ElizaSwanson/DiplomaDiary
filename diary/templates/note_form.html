@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="note-form-container">
+    <div class="note-form">
+        <h2>{% if object %}Редактировать запись{% else %}Новая запись{% endif %}</h2>
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label>Заголовок
+                    {{ form.title }}
+                </label>
+            </div>
+
+            <div class="form-group">
+                 <label>Заголовок
+                    {{ form.content }}
+                </label>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-save">Сохранить</button>
+                <a href="{% url 'diary:entry_list' %}" class="btn-cancel">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
