@@ -31,7 +31,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=150, unique=True, blank=True, null=True)
     email = models.EmailField(unique=True, verbose_name="почта")
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ["username"]
 
     objects = UserManager()
 

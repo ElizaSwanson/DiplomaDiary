@@ -2,8 +2,6 @@ from django.test import TestCase
 from django.urls import reverse
 
 from .models import User
-from django.core import mail
-from django.contrib.auth.tokens import default_token_generator
 
 
 class UserViewsTests(TestCase):
@@ -33,6 +31,5 @@ class UserViewsTests(TestCase):
             },
         )
 
-        self.assertEqual(
-            response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
         self.assertTrue(User.objects.filter(email="new@test.ru").exists())

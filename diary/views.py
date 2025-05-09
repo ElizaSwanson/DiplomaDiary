@@ -1,19 +1,16 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from .forms import NoteForm
 from .models import Note
 
-from django.utils.decorators import method_decorator
-from django.views.decorators.debug import sensitive_variables
-
 
 class DiaryEntrySearchView(LoginRequiredMixin, ListView):
     model = Note
-    template_name = 'search.html'  # Убедитесь в правильном пути
-    context_object_name = 'notes'
+    template_name = "search.html"  # Убедитесь в правильном пути
+    context_object_name = "notes"
 
     def get_queryset(self):
         query = self.request.GET.get("q")
@@ -26,7 +23,7 @@ class DiaryEntrySearchView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['query'] = self.request.GET.get('q', '')
+        context["query"] = self.request.GET.get("q", "")
         return context
 
 
@@ -41,7 +38,7 @@ class NotesListView(LoginRequiredMixin, ListView):
 
 class NotesDetailView(LoginRequiredMixin, DetailView):
     model = Note
-    template_name = 'note_detail.html'
+    template_name = "note_detail.html"
 
     def get_queryset(self):
         return Note.objects.filter(author=self.request.user)
@@ -50,18 +47,19 @@ class NotesDetailView(LoginRequiredMixin, DetailView):
 class NotesCreateView(LoginRequiredMixin, CreateView):
     model = Note
     form_class = NoteForm
-    template_name = 'note_form.html'
-    success_url = reverse_lazy('diary:entry_list')
+    template_name = "note_form.html"
+    success_url = reverse_lazy("diary:entry_list")
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+
 class NotesUpdateView(LoginRequiredMixin, UpdateView):
     model = Note
     form_class = NoteForm
-    template_name = 'note_form.html'
-    success_url = reverse_lazy('diary:entry_list')
+    template_name = "note_form.html"
+    success_url = reverse_lazy("diary:entry_list")
 
     def get_queryset(self):
         return Note.objects.filter(author=self.request.user)
@@ -69,9 +67,8 @@ class NotesUpdateView(LoginRequiredMixin, UpdateView):
 
 class NotestDeleteView(LoginRequiredMixin, DeleteView):
     model = Note
-    template_name = 'note_delete.html'
-    success_url = reverse_lazy('diary:entry_list')
+    template_name = "note_delete.html"
+    success_url = reverse_lazy("diary:entry_list")
 
     def get_queryset(self):
         return Note.objects.filter(author=self.request.user)
-

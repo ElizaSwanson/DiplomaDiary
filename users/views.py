@@ -28,6 +28,4 @@ class UserCreateView(CreateView):
 
 
 class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy(
-        "users:login"
-    )
+    next_page = reverse_lazy("users:login")
