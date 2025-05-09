@@ -7,7 +7,7 @@ from .views import DiaryEntrySearchView, NotesListView, NotesUpdateView, NotestD
 app_name = DiaryConfig.name
 
 urlpatterns = [
-    path("entries/", NotesListView.as_view(), name="entry_list"),
+    path("", NotesListView.as_view(), name="entry_list"),
     path('note/<int:pk>/edit/', NotesUpdateView.as_view(), name='note_edit'),
     path('note/<int:pk>/delete/', NotestDeleteView.as_view(), name='note_delete'),
     path('note/<int:pk>/', NotesDetailView.as_view(), name='note_detail'),
